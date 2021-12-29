@@ -1,9 +1,9 @@
-package com.laddergame;
+package com.laddergame.domain;
 
 import java.util.Random;
 
-public class RandomNumberUtil {
-    private RandomNumberUtil() throws RuntimeException {
+public class RandomNumber {
+    private RandomNumber() throws RuntimeException {
         throw new RuntimeException("Unnecessary instance generation");
     }
 
@@ -12,8 +12,8 @@ public class RandomNumberUtil {
     }
 
     public static boolean exceedsThreshold() {
-        int randomNumber = RandomNumberUtil.generateRandomNumber();
-        return randomNumber > RandomNumberUtil.RANDOM_NUMBER_UPPER_BOUND / 2;
+        int randomNumber = RandomNumber.generateRandomNumber();
+        return randomNumber > RandomNumber.RANDOM_NUMBER_UPPER_BOUND / 2;
     }
 
     private static int generateRandomNumber() {
