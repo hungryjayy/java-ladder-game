@@ -6,10 +6,10 @@ import com.laddergame.domain.Lines;
 import java.util.List;
 import java.util.stream.Collectors;
 
-public class ResultDto {
+public class LinesDto {
     private static List<List<Boolean>> gameResult;
 
-    ResultDto(List<List<Boolean>> lines) {
+    LinesDto(List<List<Boolean>> lines) {
         gameResult = lines;
     }
 
@@ -17,13 +17,13 @@ public class ResultDto {
         return gameResult;
     }
 
-    public static ResultDto from(Lines result) {
+    public static LinesDto from(Lines result) {
         List<List<Boolean>> lines = result
                 .getLines()
                 .stream()
                 .map(Line::getHasLadders)
                 .collect(Collectors.toList());
 
-        return new ResultDto(lines);
+        return new LinesDto(lines);
     }
 }

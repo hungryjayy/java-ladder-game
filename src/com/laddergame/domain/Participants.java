@@ -3,6 +3,8 @@ package com.laddergame.domain;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static com.laddergame.util.Parser.parseInput;
+
 public class Participants {
     private final List<Participant> participants;
 
@@ -13,7 +15,7 @@ public class Participants {
     }
 
     public static Participants valueOf(String namesString) {
-        return new Participants(parseName(namesString));
+        return new Participants(parseInput(namesString));
     }
 
     public int getParticipantNumber() {
@@ -25,10 +27,4 @@ public class Participants {
                 .map(Participant::getName)
                 .collect(Collectors.toList());
     }
-
-    private static List<String> parseName(String namesString) {
-        return List.of(namesString.split(PARTICIPANTS_NAME_DELIMITER));
-    }
-
-    private static final String PARTICIPANTS_NAME_DELIMITER = ",";
 }
