@@ -1,37 +1,20 @@
 package com.laddergame.domain;
 
 import java.util.List;
-import java.util.Map;
-import java.util.concurrent.atomic.AtomicInteger;
 import java.util.stream.Collectors;
 
-import static com.laddergame.util.Parser.parseInput;
-
 public class GameResult {
-    private final Map<String, String> matchedGameResults;
+    private final String participantName;
+    private final String result;
 
-    private GameResult(Map<String, String> gameResults) {
-        this.matchedGameResults = gameResults;
+    private GameResult(String participantName, String result) {
+        this.participantName = participantName;
+        this.result = result;
     }
 
-    public static GameResult valueOf(Participants participantsNamesString, Lines lines, String gameResultsString) {
-        List<String> gameResults = parseInput(gameResultsString);
-        Map<String, String> matchedGameResults = makeGameResults(participantsNamesString, lines, gameResults);
-        return new GameResult(matchedGameResults);
-    }
-
-    private static Map<String, String> makeGameResults(
-            Participants participants,
-            Lines lines,
-            List<String> gameResults
-    ) {
-        List<String> participantsNames = participants.getParticipantsNames();
-        AtomicInteger index = new AtomicInteger();
-        return participantsNames.stream()
-                .collect(Collectors.toMap(
-                        participantName -> participantName,
-                        gameResult -> getGameResult(index.getAndIncrement(), lines, gameResults)
-                ));
+    public static GameResult valueOf(int index, String participantName, Lines lines, List<String> results) {
+        String result = getGameResult(index, lines, results);
+        return new GameResult(participantName, result);
     }
 
     private static String getGameResult(int currentIndex, Lines lines, List<String> gameResults) {
@@ -57,7 +40,11 @@ public class GameResult {
         return x;
     }
 
-    public Map<String, String> getMatchedGameResults() {
-        return matchedGameResults;
+    public String getParticipantName() {
+        return participantName;
+    }
+
+    public String getResult() {
+        return result;
     }
 }

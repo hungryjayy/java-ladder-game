@@ -2,9 +2,11 @@ package com.laddergame.view;
 
 import java.util.Scanner;
 
+import static com.laddergame.util.ExceptionMessages.UNNECESSARY_INSTANCE_GENERATION_EXCEPTION;
+
 public class InputView {
     private InputView() throws RuntimeException {
-        throw new RuntimeException("Unnecessary instance generation");
+        throw new RuntimeException(UNNECESSARY_INSTANCE_GENERATION_EXCEPTION);
     }
 
     private final static Scanner scanner = new Scanner(System.in);
@@ -26,8 +28,9 @@ public class InputView {
 
     public static String inputToShowParticipantResult() {
         System.out.println("결과를 보고 싶은 사람은?");
-        return scanner.nextLine();
+        return scanner.next();
     }
 
     public static String APPLICATION_EXIT = "춘식이";
+    public static String EVERY_PARTICIPANT = "all";
 }

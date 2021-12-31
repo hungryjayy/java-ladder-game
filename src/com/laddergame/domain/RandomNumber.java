@@ -2,9 +2,11 @@ package com.laddergame.domain;
 
 import java.util.Random;
 
+import static com.laddergame.util.ExceptionMessages.UNNECESSARY_INSTANCE_GENERATION_EXCEPTION;
+
 public class RandomNumber {
     private RandomNumber() throws RuntimeException {
-        throw new RuntimeException("Unnecessary instance generation");
+        throw new RuntimeException(UNNECESSARY_INSTANCE_GENERATION_EXCEPTION);
     }
 
     private static class RandomNumberSingletonHelper {
